@@ -1,0 +1,126 @@
+.sub-footer {
+  position: relative;
+  margin-top: 0;
+  padding: 8px 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba($steel, 0.05);
+  
+  // 装饰性背景
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, 
+      rgba(255, 246, 248, 0.3) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 246, 248, 0.3) 100%
+    );
+    pointer-events: none;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  // 装饰性图案
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(173, 216, 230, 0.05) 0%, transparent 50%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  // 装饰点
+  .decoration-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 182, 193, 0.2);
+      animation: float 6s infinite ease-in-out;
+    }
+    
+    &::before {
+      bottom: 15%;
+      left: 20%;
+      animation-delay: -4s;
+    }
+    
+    &::after {
+      top: 25%;
+      right: 15%;
+      animation-delay: -6s;
+    }
+  }
+  
+  // 光晕效果
+  .glow {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, 
+      rgba(255, 182, 193, 0.05) 0%,
+      rgba(255, 182, 193, 0.02) 30%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: glowMove 20s infinite ease-in-out alternate;
+  }
+  
+  // 闪光线
+  .shimmer-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 182, 193, 0.1),
+      transparent
+    );
+    animation: shimmer 4s infinite;
+  }
+
+  .sub-footer-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    font-size: 0.85rem;
+    
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      align-items: center;
+    }
+    
+    .copyright {
+      color: lighten($steel, 10%);
+      a {
+        color: $steel;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

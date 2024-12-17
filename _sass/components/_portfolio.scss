@@ -1,0 +1,1110 @@
+// 确保有这些基础变量定义
+$primary: #9F7AEA;  // 紫色
+$steel: #6B7280;    // 灰色
+
+.strip {
+  padding: 60px 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 245, 0.8) 0%,
+    rgba(245, 245, 255, 0.8) 50%,
+    rgba(240, 255, 250, 0.8) 100%
+  );
+
+  .container {
+    max-width: 1400px;
+  }
+}
+
+.portfolio-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .portfolio-image {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .portfolio-content {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    .portfolio-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      
+      a {
+        color: $primary;
+        text-decoration: none;
+        
+        &:hover {
+          color: darken($primary, 10%);
+        }
+      }
+    } //card title字体大小
+
+    .portfolio-category {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      
+      span {
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
+        margin: 0.25rem;
+        background: rgba($primary, 0.1);
+        border-radius: 15px;
+        font-size: 0.8rem;
+        color: $primary;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: $steel;
+      margin-bottom:0.2;
+      margin-top: 0.5rem;
+    }
+  }
+} //这里是/workurl下card的字体大小
+
+// 响应式调整
+@include media-breakpoint-down(sm) {
+  .portfolio-item {
+    .portfolio-image {
+      height: 200px;
+    }
+    
+    .portfolio-content {
+      padding: 1.5rem;
+      
+      .portfolio-title {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+// 调整容器间距
+.container.pt-6 {
+  padding-top: 4rem !important;
+}
+
+.container.pb-6 {
+  padding-bottom: 4rem !important;
+}
+
+.container.pb-md-10 {
+  @include media-breakpoint-up(md) {
+    padding-bottom: 6rem !important;
+  }
+}
+
+// 页面基础样式
+.page-work-list {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 245, 0.9) 0%,
+    rgba(245, 245, 255, 0.9) 50%,
+    rgba(240, 255, 250, 0.9) 100%
+  );
+  
+  .noise-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+} 
+
+// 作品详情页样式
+.page-work {
+  // 添加整个页面的背景渐变
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 245, 0.8) 0%,
+    rgba(245, 245, 255, 0.8) 50%,
+    rgba(240, 255, 250, 0.8) 100%
+  );
+  min-height: 100vh;
+  
+  // 添加装饰性背景
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(173, 216, 230, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.work-single {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .portfolio-image {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+    
+    img {
+      max-height: 400px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+  }
+
+  .portfolio-category {
+    margin-bottom: 2rem;
+    text-align: left;
+    
+    span {
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      margin: 0.25rem;
+      background: rgba($primary, 0.1);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: $primary;
+    }
+  }
+
+  .title {
+    text-align: left;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    h1, h2, h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      text-align: left;
+      font-size: 1.75rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 2rem auto;
+      display: block;
+    }
+
+    // 更新列表样式
+    ul, ol {
+      margin: 0.8em 0;
+      padding-left: 0.5em;
+      
+      li {
+        font-family: 'Spectral', 'Source Serif Pro', Georgia, serif;  // 使用与正文相同的衬线字体
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #2d3436;
+        margin-bottom: 0.4em;
+        position: relative;
+        padding-left: 1.5em;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        text-align: justify;
+        
+        // 优化文字渲染
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        
+        &::before {
+          content: '▹';  // 使用优雅的箭头符号
+          position: absolute;
+          left: 0;
+          top: -0.1em;
+          color: #3498db;
+          opacity: 0.8;
+          font-size: 1.2em;
+        }
+
+        // 平滑的hover效果
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        &:hover {
+          color: #2c3e50;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+} 
+
+// 主页卡片特殊样式
+.portfolio-item.home-card {
+  flex-direction: row;
+  align-items: center;
+  padding: 2rem 2rem;
+  margin: 1rem auto 3rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  min-height: 350px;
+  max-width: 1000px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  
+  &:last-child {
+    margin-bottom: 2rem;
+  }
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    
+    .portfolio-image img {
+      transform: scale(1.08);
+    }
+    
+    .portfolio-title span {
+      color: $primary;
+      transition: color 0.3s ease;
+    }
+  }
+
+  .portfolio-content {
+    flex: 0 0 50%;
+    padding: 2rem 4rem 2rem 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    .portfolio-title {
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      
+      a {
+        color: #2D3748;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+
+    .portfolio-category {
+      margin-bottom: 1rem;
+      
+      span {
+        font-size: 0.9rem;
+        padding: 0.4rem 1.2rem;
+        margin-right: 0.8rem;
+        margin-bottom: 0.3rem;
+        background: rgba($primary, 0.1);
+        border-radius: 25px;
+        color: $primary;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-top: -1;
+      margin-bottom: 0;
+    }
+  }
+
+  .portfolio-image {
+    flex: 0 0 50%;
+    height: 500px;
+    margin: -3rem -2rem -3rem 0;
+    overflow: hidden;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+}
+
+// 响应式调整
+@include media-breakpoint-down(md) {
+  .portfolio-item.home-card {
+    margin: 1.5rem auto 4rem;
+    padding: 2rem;
+    min-height: auto;
+    
+    .portfolio-content {
+      flex: 1;
+      padding: 0 0 1.5rem 0;
+      
+      .portfolio-title {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+    
+    .portfolio-image {
+      width: calc(100% + 4rem);
+      margin: 0 -2rem -2rem -2rem;
+    }
+  }
+} 
+
+// 自定义网格间距
+.row.g-custom {
+  --bs-gutter-x: 2rem; // 增加水平间距
+  --bs-gutter-y: 1rem; // 增加垂直间距
+} 
+
+// 添加标题样式
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2D3748;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  
+  .heart-icon {
+    color: $primary;
+    display: inline-block;
+    margin-left: 0.5rem;
+    animation: heartBeat 1.5s ease infinite;
+  }
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+// 修改卡片链接样式
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+} 
+
+// Work List 页面的卡片样式
+.work-list-card {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  
+  .portfolio-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    height: 100%;
+    padding: 2rem;
+    transition: all 0.4s ease;
+  }
+  
+  .portfolio-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.4s ease;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+      transition: all 0.4s ease;
+    }
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    
+    .portfolio-content {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      
+      .portfolio-title span {
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      
+      .portfolio-category span {
+        background: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+      }
+      
+      p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+    
+    .portfolio-image {
+      opacity: 1;
+      
+      img {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  .portfolio-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    
+    span {
+      color: #2D3748;
+      transition: all 0.4s ease;
+    }
+  }
+  
+  .portfolio-category {
+    margin-bottom: 1rem;
+    
+    span {
+      font-size: 0.5rem;
+      padding: 0.3rem 1rem;
+      margin-right: 0.5rem;
+      background: rgba($primary, 0.1);
+      border-radius: 20px;
+      color: $primary;
+      transition: all 0.4s ease;
+    }
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #4A5568;
+    transition: all 0.4s ease;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+} 
+
+// 添加学术字体
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+
+// 作品详情页样式
+.work-single {
+  .content {
+    font-family: 'Source Serif Pro', Charter, 'Computer Modern', Georgia, serif;
+    
+    h1, h2, h3 {
+      font-family: 'Clash Display', 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1a202c;
+      
+      // 添加渐变效果
+      background: linear-gradient(120deg, #2c3e50, #3498db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      
+      // 调整间距
+      margin: 2.5em 0 1em;
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    p {
+      // 使用更优雅的字体组合
+      font-family: 'Spectral', 'Source Serif Pro', Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #2d3436;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+      
+      // 调整段落间距和缩进
+      margin: 1.2em 0;
+      text-align: justify;
+      hyphens: auto;
+      
+      // 优化文字渲染
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "kern", "liga", "clig", "calt";
+      
+      // 添加优雅的hover效果
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      &:hover {
+        transform: translateX(5px);
+        color: #2c3e50;
+      }
+    }
+
+    // 引用样式
+    blockquote {
+      font-family: 'Source Serif Pro', Charter, serif;
+      font-style: italic;
+      border-left: 3px solid $primary;
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    // 代码块样式
+    code {
+      font-family: 'Source Code Pro', 'Computer Modern Typewriter', monospace;
+      font-size: 0.9em;
+    }
+
+    // 列表样式
+    ul, ol {
+      font-family: 'Spectral', serif;
+      color: #2d3436;
+      margin: 1em 0;
+      
+      li {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        margin-bottom: 0.4em;
+        position: relative;
+        padding-left: 1.5em;
+        
+        &::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: #3498db;
+          opacity: 0.7;
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    // 表格样式
+    table {
+      font-family: 'Source Sans Pro', Arial, sans-serif;
+      font-size: 0.95em;
+    }
+  }
+
+  // 标题样式
+  .title {
+    font-family: 'Source Sans Pro', 'Computer Modern Sans', Arial, sans-serif;
+    font-weight: 600;
+    color: #1A202C;
+  }
+
+  // 分类标签样式
+  .portfolio-category {
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    
+    span {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+  }
+} 
+
+// Publications 部分样式
+.publications-section {
+  padding: 4rem 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 240, 245, 0.8) 0%,
+    rgba(245, 245, 255, 0.8) 50%,
+    rgba(240, 255, 250, 0.8) 100%
+  );
+
+  .section-title {
+    text-align: left;
+    font-size: 2.5rem;
+    color: #2D3748;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+}
+
+.publication-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .pub-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    a {
+      color: $primary;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: darken($primary, 10%);
+      }
+    }
+
+    .award-badge {
+      font-size: 1rem;
+      padding: 0.3rem 1rem;
+      background: rgba(#F6E05E, 0.15);
+      color: #B7791F;
+      border-radius: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+      border: 1px solid rgba(#B7791F, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      &::before {
+        content: "🏆";
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .pub-authors {
+    font-size: 1rem;
+    color: #4A5568;
+    margin-bottom: 0.5rem;
+    font-family: 'Source Serif Pro', serif;
+    
+    strong {
+      color: #2D3748;
+      font-weight: 600;
+    }
+  }
+
+  .pub-venue {
+    font-size: 0.95rem;
+    color: #718096;
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-family: 'Source Serif Pro', serif;
+  }
+
+  .pub-abstract {
+    font-size: 0.95rem;
+    color: #4A5568;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-family: 'Source Serif Pro', serif;
+  }
+
+  .pub-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .pub-link {
+      font-size: 0.9rem;
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Source Sans Pro', sans-serif;
+      
+      &.project {
+        background: rgba($primary, 0.1);
+        color: $primary;
+        
+        &:hover {
+          background: rgba($primary, 0.2);
+        }
+      }
+      
+      &.arxiv {
+        background: rgba(#4299E1, 0.1);
+        color: #4299E1;
+        
+        &:hover {
+          background: rgba(#4299E1, 0.2);
+        }
+      }
+      
+      &.code {
+        background: rgba(#48BB78, 0.1);
+        color: #48BB78;
+        
+        &:hover {
+          background: rgba(#48BB78, 0.2);
+        }
+      }
+      
+      &.citations {
+        background: rgba(#ED8936, 0.1);
+        color: #ED8936;
+        
+        &:hover {
+          background: rgba(#ED8936, 0.2);
+        }
+      }
+    }
+  }
+} 
+
+// 作品集页面的整体样式
+.work-single {
+  // 更新背景样式
+  background: linear-gradient(135deg, 
+    rgba(255, 240, 245, 0.8) 0%,
+    rgba(245, 245, 255, 0.8) 50%,
+    rgba(240, 255, 250, 0.8) 100%
+  );
+  
+  // 添加装饰性背景
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(173, 216, 230, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .content {
+    // 更新标题样式
+    h1, h2, h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      background: linear-gradient(120deg, #2c3e50, #3498db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 2rem 0 1rem;
+      
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 24px;
+        height: 2px;
+        background: currentColor;
+        margin-right: 12px;
+        vertical-align: middle;
+      }
+    }
+
+    // 更新段落样式
+    p {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.8;
+      color: #2c3e50;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateX(10px);
+      }
+    }
+
+    // 更新图片容器样式
+    figure {
+      margin: 2rem -2rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      img {
+        border-radius: 8px;
+        transition: all 0.5s ease;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+      
+      figcaption {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 1rem;
+        text-align: center;
+        opacity: 0.8;
+      }
+    }
+
+    // 更新列表样式
+    ul, ol {
+      li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin: 0.5rem 0;
+        
+        &::before {
+          content: '→';
+          position: absolute;
+          left: 0;
+          color: #3498db;
+          opacity: 0.7;
+        }
+      }
+    }
+
+    // 更新代码块样式
+    pre {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      
+      code {
+        color: #e2e2e2;
+        font-family: 'Fira Code', monospace;
+      }
+    }
+
+    // 更新数学公式样式
+    .MathJax_Display {
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      margin: 1.5rem 0;
+    }
+  }
+}
+
+// 添加页面转场动画
+.page-work {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 添加滚动动画
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
+
+// PDF Preview Styles
+.pdf-container {
+  margin: 2rem 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-preview {
+  margin: 2rem 0;
+  text-align: center;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.pdf-download {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.pdf-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: $primary;
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: darken($primary, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+} 
+
+// GIF Preview Styles
+.gif-container {
+  margin: 2rem 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .gif-caption,
+  figcaption {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    color: #4a5568;
+    margin-top: 1rem;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.9;
+    line-height: 1.5;
+    
+    // 添加优雅的渐变下划线
+    background: linear-gradient(to right, #3498db, #2c3e50);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+    padding-bottom: 0.2rem;
+    display: inline-block;
+  }
+}
+
+.gif-preview {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+} 
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 比例 */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* 可选：添加圆角 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 可选：添加阴影效果 */
+  }
+} 

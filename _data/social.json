@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Github",
+    "link": "https://github.com/liangyutingzh",
+    "image": "images/social/github.svg"
+  },
+  {
+    "name": "Email",
+    "link": "mailto:liangyuting.zhang@example.com",
+    "image": "images/social/email.svg"
+  },
+  {
+    "name": "LinkedIn",
+    "link": "https://linkedin.com/in/liangyutingzh",
+    "image": "images/social/linkedin.svg"
+  }
+]

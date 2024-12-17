@@ -1,0 +1,259 @@
+.gallery-container {
+  position: relative;
+  padding: 4rem 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    rgba(255, 245, 245, 0.8) 0%,
+    rgba(245, 245, 255, 0.8) 50%,
+    rgba(245, 255, 245, 0.8) 100%
+  );
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(173, 216, 230, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// 分类过滤器样式
+.gallery-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #666;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  
+  &.active {
+    background: #9F7AEA;
+    color: white;
+    box-shadow: 0 4px 15px rgba(159, 122, 234, 0.3);
+  }
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+.gallery-item {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+
+  // 随机旋转角度
+  &:nth-child(3n + 1) { transform: rotate(-2deg); }
+  &:nth-child(3n + 2) { transform: rotate(1deg); }
+  &:nth-child(3n + 3) { transform: rotate(-1deg); }
+
+  // 随机大小
+  &:nth-child(4n) {
+    grid-row: span 2;
+  }
+  &:nth-child(5n) {
+    grid-column: span 2;
+    @media (max-width: 768px) {
+      grid-column: span 1;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 2;
+    
+    .gallery-image-wrapper {
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      
+      img {
+        transform: scale(1.1);
+      }
+    }
+    
+    .gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.gallery-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  // 随机长宽比
+  &:nth-child(3n)::before {
+    padding-bottom: 75%;
+  }
+  &:nth-child(5n)::before {
+    padding-bottom: 125%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.95) contrast(1.1);
+  }
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8) 0%,
+    rgba(0,0,0,0.4) 60%,
+    transparent 100%
+  );
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+}
+
+// 装饰元素
+.decoration {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  
+  &.top-left {
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 20% 20%, rgba(255,182,193,0.2) 0%, transparent 70%);
+  }
+  
+  &.bottom-right {
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at 80% 80%, rgba(173,216,230,0.2) 0%, transparent 70%);
+  }
+}
+
+// 加载动画
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gallery-item {
+  animation: fadeInUp 0.8s ease-out forwards;
+  
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Fancybox自定义样式
+.fancybox__container {
+  --fancybox-bg: rgba(24, 24, 27, 0.95);
+
+  .fancybox__caption {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .carousel__button {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    
+    &:hover {
+      background: rgba(255,255,255,0.3);
+    }
+  }
+} 

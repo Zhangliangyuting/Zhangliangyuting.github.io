@@ -1,0 +1,48 @@
+---
+layout: default
+bodyClass: "page-work"
+---
+
+<!-- 添加 MathJax 支持 -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<div class="container pb-6 pt-6 pt-md-10 pb-md-10">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-12">
+      <div class="work work-single">
+        <h1 class="title">{{page.title}}</h1>
+        {% if page.category %}
+        <div class="portfolio-category">
+          {% assign categories = page.category | split: " / " %}
+          {% for category in categories %}
+            <span data-category="{{ category | strip }}">{{ category }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if page.image %}
+        <div class="portfolio-image mb-5">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="img-fluid" style="max-height: 400px; width: auto; margin: 0 auto; display: block;" />
+        </div>
+        {% endif %}
+        <div class="content text-start">
+          {{content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

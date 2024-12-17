@@ -1,0 +1,54 @@
+.call {
+  position: relative;
+  overflow: visible;
+  background: none;
+  padding: 0;
+  margin: 30px 0;
+  z-index: 2;
+
+  .contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(159, 122, 234, 0.05);
+    border: 1px solid rgba(159, 122, 234, 0.3);
+    border-radius: 8px;
+    color: $primary;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 3;
+
+    img {
+      width: 18px;
+      height: 18px;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+      filter: invert(45%) sepia(85%) saturate(392%) hue-rotate(229deg) brightness(95%) contrast(92%);
+    }
+
+    &:hover {
+      background: rgba(159, 122, 234, 0.1);
+      border-color: rgba(159, 122, 234, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(159, 122, 234, 0.15);
+      
+      img {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
+  }
+}

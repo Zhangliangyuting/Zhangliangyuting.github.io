@@ -1,0 +1,245 @@
+.header {
+  position: relative;
+  padding: 20px 0;
+  overflow: hidden;
+  z-index: 100;
+  
+  // 主背景
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  
+  // 装饰性背景
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, 
+      rgba(255, 240, 245, 0.4) 0%,
+      rgba(240, 248, 255, 0.4) 50%,
+      rgba(255, 245, 250, 0.4) 100%
+    );
+    pointer-events: none;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  // 装饰性图案
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 10% 0%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 90% 100%, rgba(173, 216, 230, 0.1) 0%, transparent 50%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  // 添加浮动装饰元素
+  .decoration-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    
+    // 添加多个装饰点
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 182, 193, 0.3);
+      animation: float 6s infinite ease-in-out;
+    }
+    
+    &::before {
+      top: 20%;
+      left: 10%;
+      animation-delay: -2s;
+    }
+    
+    &::after {
+      bottom: 30%;
+      right: 15%;
+      animation-delay: -4s;
+    }
+  }
+  
+  // 添加光晕效果
+  .glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, 
+      rgba(255, 182, 193, 0.1) 0%,
+      rgba(255, 182, 193, 0.05) 30%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: glowMove 20s infinite ease-in-out;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02);
+  
+  // 导航菜单样式
+  .main-menu {
+    position: relative;
+    
+    > ul {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      
+      > li {
+        position: relative;
+        margin-left: 20px;
+        
+        > a {
+          display: block;
+          padding: 5px 0;
+          color: $black;
+          font-size: 1rem;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 1;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: $primary;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+          }
+
+          &:hover::after {
+            transform: scaleX(1);
+          }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle, 
+              rgba(255, 182, 193, 0.1) 0%,
+              transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border-radius: 8px;
+          }
+          
+          &:hover::before {
+            opacity: 1;
+          }
+        }
+
+        &.active > a::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+
+  .menu-main {
+    > li {
+      > a {
+        &[href*="publications"] {
+          &.active {
+            color: $primary;
+            
+            &::after {
+              width: 100%;
+              background: $primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes headerCatWalk {
+  0% {
+    left: -20px;
+    transform: scaleX(1);
+  }
+  45% {
+    left: 100px;
+    transform: scaleX(1);
+  }
+  50% {
+    left: 100px;
+    transform: scaleX(-1);
+  }
+  95% {
+    left: -20px;
+    transform: scaleX(-1);
+  }
+  100% {
+    left: -20px;
+    transform: scaleX(1);
+  }
+}
+
+.lock-scroll {
+  .header {
+    &.header-absolute {
+      position: static;
+    }
+  }
+}
+
+// 添加动画关键帧
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+@keyframes glowMove {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(150%, 50%) scale(1.2);
+    opacity: 0.3;
+  }
+}

@@ -1,0 +1,40 @@
+---
+layout: default
+bodyClass: "page-work-list"
+---
+
+<div class="page-work-list">
+  <div class="noise-background"></div>
+  <div class="container py-5">
+    <div class="row g-4">
+      {% assign sorted_works = site.work | sort: "weight" %}
+      {% for work in sorted_works %}
+      <div class="col-12 col-md-6">
+        <a href="{{ work.url | relative_url }}" class="card-link">
+          <div class="portfolio-item work-list-card">
+            <div class="portfolio-content">
+              <h2 class="portfolio-title">
+                <span>{{ work.title }}</span>
+              </h2>
+              <div class="portfolio-category">
+                {% assign categories = work.category | split: " / " %}
+                {% for category in categories %}
+                  <span data-category="{{ category | strip }}">{{ category }}</span>
+                {% endfor %}
+              </div>
+              <p>{{ work.abstract | strip_html | truncate: 200 }}</p>
+            </div>
+            {% if work.image %}
+            <div class="portfolio-image">
+              <img src="{{ work.image | relative_url }}" alt="{{ work.title }}" />
+            </div>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/noise.js' | relative_url }}"></script> 

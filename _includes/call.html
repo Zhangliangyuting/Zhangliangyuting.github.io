@@ -1,0 +1,38 @@
+<div class="call">
+  <div class="call-box-top">
+    <div class="contact-buttons">
+      {% if site.data.contact.email %}
+      <a href="mailto:{{ site.data.contact.email }}" class="button contact-button">
+        <img src="{{ '../images/social/email.svg' | relative_url }}" alt="Email" />
+        <span>Email</span>
+      </a>
+      {% endif %}
+      
+      {% if site.data.contact.github %}
+      <a href="{{ site.data.contact.github }}" class="button contact-button" target="_blank">
+        <img src="{{ '../images/social/github.svg' | relative_url }}" alt="Github" />
+        <span>Github</span>
+      </a>
+      {% endif %}
+      
+      {% if site.data.contact.linkedin %}
+      <a href="{{ site.data.contact.linkedin }}" class="button contact-button" target="_blank">
+        <img src="{{ '../images/social/linkedin.svg' | relative_url }}" alt="LinkedIn" />
+        <span>LinkedIn</span>
+      </a>
+      {% endif %}
+      
+      {% if site.data.contact.google_scholar %}
+      <a href="{{ site.data.contact.google_scholar.url }}" class="button contact-button" target="_blank">
+        <img src="{{ site.data.contact.google_scholar.icon | relative_url }}" alt="Google Scholar" />
+        <span>Google Scholar</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  {% if include.show_button %}
+    <div class="call-box-bottom">
+      <a href="{{ site.data.contact.contact_button_link | relative_url }}" class="button">Contact</a>
+    </div>
+  {% endif %}
+</div>

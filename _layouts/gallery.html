@@ -1,0 +1,102 @@
+---
+layout: default
+bodyClass: "page-gallery"
+---
+
+<div class="gallery-container">
+  <div class="noise-background"></div>
+  <div class="decoration top-left"></div>
+  <div class="decoration bottom-right"></div>
+  
+  <div class="container">
+    <!-- 分类过滤器 -->
+    <div class="gallery-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      {% assign categories = site.gallery | map: "category" | uniq %}
+      {% for category in categories %}
+        <button class="filter-btn" data-category="{{ category }}">{{ category }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="gallery-grid">
+      {% assign sorted_images = site.gallery | sort: 'date' | reverse %}
+      {% for image in sorted_images %}
+      <div class="gallery-item" data-category="{{ image.category }}">
+        <a href="{{ image.image | relative_url }}" class="gallery-link" data-fancybox="gallery" data-caption="{{ image.title }}{% if image.description %} - {{ image.description }}{% endif %}">
+          <div class="gallery-image-wrapper">
+            <img src="{{ image.image | relative_url }}" alt="{{ image.title }}" loading="lazy" />
+          </div>
+          {% if image.title %}
+          <div class="gallery-caption">
+            <h3>{{ image.title }}</h3>
+            {% if image.description %}
+            <p>{{ image.description }}</p>
+            {% endif %}
+          </div>
+          {% endif %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- FancyBox -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化 Fancybox
+  Fancybox.bind("[data-fancybox]", {
+    Toolbar: {
+      display: [
+        { id: "prev", position: "center" },
+        { id: "counter", position: "center" },
+        { id: "next", position: "center" },
+        "zoom",
+        "slideshow",
+        "fullscreen",
+        "close",
+      ],
+    },
+    Image: {
+      zoom: true,
+    },
+    Thumbs: {
+      autoStart: true,
+    }
+  });
+
+  // 分类过滤功能
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.category;
+      
+      // 更新按钮状态
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // 过滤图片
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+});
+</script> 

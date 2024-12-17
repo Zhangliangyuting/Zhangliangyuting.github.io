@@ -1,0 +1,110 @@
+---
+layout: default
+bodyClass: "page-home"
+---
+
+<div class="intro">
+  <div class="decoration"></div>
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
+        <div class="content-wrapper">
+          {{ content }}
+        </div>
+      </div>
+      {% if page.intro_image %}
+      <div class="col-12 col-md-5 col-lg-5 order-1 order-md-2 position-relative">
+        <img alt="{{ page.title }}" class="intro-image{% if page.intro_image_absolute %} intro-image-absolute{% endif %}{% if page.intro_image_hide_on_mobile %} intro-image-hide-mobile{% endif %}" src="{{ page.intro_image | relative_url }}" />
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="publications-section" id="publications">
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+    <div class="publications-list">
+      {% if site.publications %}
+        {% assign sorted_publications = site.publications | sort: "weight" | reverse %}
+        {% for pub in sorted_publications %}
+        <div class="publication-item">
+          <h3 class="pub-title">
+            <a href="{{ pub.links.arxiv }}" target="_blank">{{ pub.title }}</a>
+            {% if pub.award %}
+              <span class="award-badge">{{ pub.award }}</span>
+            {% endif %}
+          </h3>
+          <p class="pub-authors">
+            {% for author in pub.authors %}
+              {% if author == "Liangyuting Zhang" %}
+                <strong>{{ author }}</strong>
+              {% else %}
+                {{ author }}
+              {% endif %}
+              {% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </p>
+          <p class="pub-venue">
+            {{ pub.venue }}{% if pub.year %}, {{ pub.year }}{% endif %}
+          </p>
+          <p class="pub-abstract">{{ pub.abstract | truncate: 300 }}</p>
+          <div class="pub-links">
+            {% if pub.links.project %}
+            <a href="{{ pub.links.project }}" class="pub-link project" target="_blank">Project Page</a>
+            {% endif %}
+            {% if pub.links.arxiv %}
+            <a href="{{ pub.links.arxiv }}" class="pub-link arxiv" target="_blank">Paper</a>
+            {% endif %}
+            {% if pub.links.code %}
+            <a href="{{ pub.links.code }}" class="pub-link code" target="_blank">Code</a>
+            {% endif %}
+            {% if pub.links.citations %}
+            <a href="https://scholar.google.com{{ pub.links.citations }}" class="pub-link citations" target="_blank">Citations</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p>No publications available.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="container">
+    <h2 class="section-title">
+      Selected Projects
+      <span class="heart-icon">💜</span>
+    </h2>
+    <div class="row g-custom">
+      {% assign projects = site.work | sort: "weight" %}
+      {% for project in projects limit:site.home.limit_work %}
+      <div class="col-12">
+        <a href="{{ project.url | relative_url }}" class="card-link">
+          <div class="portfolio-item home-card">
+            <div class="portfolio-content">
+              <h2 class="portfolio-title">
+                <span>{{ project.title }}</span>
+              </h2>
+              <div class="portfolio-category">
+                {% assign categories = project.category | split: " / " %}
+                {% for category in categories %}
+                  <span data-category="{{ category | strip }}">{{ category }}</span>
+                {% endfor %}
+              </div>
+              <p>{{ project.abstract | strip_html | truncate: 200 }}</p>
+            </div>
+            {% if project.image %}
+            <div class="portfolio-image">
+              <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" />
+            </div>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

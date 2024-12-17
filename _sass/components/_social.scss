@@ -1,0 +1,19 @@
+.social {
+  display: block;
+  img {
+    width: 24px;
+    height: 24px;
+    filter: invert(40%) sepia(9%) saturate(207%) hue-rotate(169deg) brightness(90%) contrast(89%);
+    transition: all 0.3s ease;
+  }
+  a {
+    padding: 10px;
+    display: inline-block;
+    &:hover {
+      img {
+        transform: translateY(-2px);
+        filter: invert(40%) sepia(82%) saturate(2074%) hue-rotate(322deg) brightness(87%) contrast(96%);
+      }
+    }
+  }
+}

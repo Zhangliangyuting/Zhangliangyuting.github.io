@@ -1,0 +1,27 @@
+main:
+  - name: "Home"
+    url: "/"
+    weight: 1
+  - name: "Work"
+    url: "/work/"
+    weight: 2
+  - name: "Publications"
+    url: "/#publications"
+    weight: 3
+  - name: "Gallery"
+    url: "/gallery/"
+    weight: 4
+
+footer:
+  - name: "Home"
+    url: "/"
+    weight: 1
+  - name: "Work"
+    url: "/work/"
+    weight: 2
+  - name: "Publications"
+    url: "/#publications"
+    weight: 3
+  - name: "Gallery"
+    url: "/gallery/"
+    weight: 4

@@ -1,0 +1,37 @@
+.logo {
+  display: none;
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+  img {
+    max-width: none;
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    object-position: left;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}
+.logo-mobile {
+  display: block;
+  height: 32px;
+  padding: 5px 0;
+  @include media-breakpoint-up(sm) {
+    display: none;
+  }
+  img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: left;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}
