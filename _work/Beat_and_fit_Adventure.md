@@ -53,6 +53,9 @@ thus promoting a healthy lifestyle. Beat&Fit Adventure aims to offer users a com
 exciting fitness experience, turning exercise from a burden into a source of pleasure and
 enjoyment.
 
+<div class="video-container">
+    <iframe width="100%" height="400" src="https://youtube.com/shorts/0PShZUoZ1Us" frameborder="0" allowfullscreen></iframe>
+
 ## Analysis of Requirements
 
 ### Market Research
@@ -142,6 +145,8 @@ design.
 
 Based on the market research findings and user needs analysis, we have designed a series of
 innovative design alternatives and prototypes. Here are the main prototypes we have designed:
+<div class="video-container">
+    <iframe width="100%" height="400" src="https://youtube.com/shorts/WJmjGsWcCY4" frameborder="0" allowfullscreen></iframe>
 
 ### Gameplay Scene
 
