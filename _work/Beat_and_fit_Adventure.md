@@ -55,6 +55,7 @@ enjoyment.
 
 <div class="video-container">
     <iframe width="100%" height="400" src="https://www.youtube.com/embed/0PShZUoZ1Us" frameborder="0" allowfullscreen></iframe>
+</div>
 
 ## Analysis of Requirements
 
@@ -147,6 +148,7 @@ Based on the market research findings and user needs analysis, we have designed 
 innovative design alternatives and prototypes. Here are the main prototypes we have designed:
 <div class="video-container">
     <iframe width="100%" height="400" src="https://www.youtube.com/embed/WJmjGsWcCY4" frameborder="0" allowfullscreen></iframe>
+</div>
 
 ### Gameplay Scene
 
